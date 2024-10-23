@@ -18,20 +18,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from article import views
+from article import views as article_views
+from user import views as user_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
 
     # Article module
-    path("article/", views.ArticleList.as_view(), name="article-list"),
-    path("article/<int:pk>/", views.ArticleDetail.as_view(), name="article-detail"),
+    path("", article_views.api_root), # default root: list all articles
+
+    path("article/", article_views.ArticleList.as_view(), name="article-list"),
+    path("article/<int:pk>/", article_views.ArticleDetail.as_view(), name="article-detail"),
 
     # User module
-    path("users/", views.UserList.as_view(), name="user-list"),
-    path("users/<int:pk>/", views.UserDetail.as_view(), name="user-detail"),
-
-    path("", views.api_root),
+    path("users/", user_views.UserList.as_view(), name="user-list"),
+    path("users/<int:pk>/", user_views.UserDetail.as_view(), name="user-detail"),
+    path("users/list", user_views.api_users_list),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
