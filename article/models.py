@@ -15,10 +15,6 @@ class Article(models.Model):
         ordering = ["created_at"]
 
     def save(self, *args, **kwargs):
-        """
-        Use the `pygments` library to create a highlighted HTML
-        representation of the code snippet.
-        """
         super(Article, self).save(*args, **kwargs)
 
     def __str__(self):

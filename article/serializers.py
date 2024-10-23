@@ -4,9 +4,7 @@ from .models import Article
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(
-        source="owner.username"
-    )  # Show author's username
+    owner = serializers.ReadOnlyField(source="owner.username")
 
     class Meta:
         model = Article

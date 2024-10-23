@@ -8,6 +8,7 @@ from rest_framework.reverse import reverse
 from .models import Article
 from .permissions import IsOwnerOrReadOnly
 from .serializers import ArticleSerializer, UserSerializer
+from .serializers import UserSerializer
 
 
 @api_view(["GET"])
@@ -15,7 +16,7 @@ def api_root(request, format=None):
     return Response(
         {
             "users": reverse("user-list", request=request, format=format),
-            "snippets": reverse("snippet-list", request=request, format=format),
+            "article": reverse("article-list", request=request, format=format),
         }
     )
 
