@@ -19,7 +19,7 @@ def api_users_list(request, format=None):
 
 
 class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
+    queryset = User.objects.all() # todo: document UserManager
     serializer_class = UserSerializer
 
 
